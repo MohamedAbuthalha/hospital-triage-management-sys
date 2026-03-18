@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+.login-hero {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b188f, #1a1a1a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+}
+
+/* BLACK SLIDE OVERLAY */
+.login-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 1;
+}
+
+/* CONTENT */
+.login-content {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* LEFT TEXT */
+.login-text h1 {
+  font-size: 4rem;
+  letter-spacing: 4px;
+}
+
+.login-text h2 {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+.login-text p {
+  margin-top: 1rem;
+  opacity: 0.85;
+}
+
+/* CARD */
+.login-card {
+  background: white;
+  color: #0b188f;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 70px rgba(0, 0, 2, 0.5);
+}
+
+.login-card h3 {
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  text-align: center;   /* optional, if you want it centered */
+  color: #000000;       /* pure black */
+  font-weight: 600;     /* optional, makes it stronger */
+  margin-bottom: 1.5rem;
+}
+
+/* FORM */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+/* BUTTON */
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  background: #0b188f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ERROR */
+.error-message {
+  background: #ffe6e6;
+  color: #c00;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* FOOTER */
+.login-footer {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .login-content {
+    grid-template-columns: 1fr;
+  }
+
+  .login-text {
+    display: none;
+  }
+}
+
+.login-card h3 {
+  text-align: center;
+}

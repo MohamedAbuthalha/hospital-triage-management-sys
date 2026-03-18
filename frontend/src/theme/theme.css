@@ -1,0 +1,421 @@
+/* ============================================================================
+   UNIFIED HOSPITAL MANAGEMENT SYSTEM - CSS VARIABLES & UTILITIES
+   ============================================================================
+   This file provides CSS variables and utility classes for consistent theming
+*/
+
+:root {
+  /* PRIMARY COLORS */
+  --color-primary: #0b188f;
+  --color-primary-light: #4f46e5;
+  --color-primary-lighter: #e0e7ff;
+  --color-primary-dark: #08107a;
+
+  /* NEUTRAL GRAYSCALE */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* STATUS COLORS */
+  --color-success: #065f46;
+  --color-success-bg: #d1fae5;
+  --color-success-border: #6ee7b7;
+
+  --color-error: #991b1b;
+  --color-error-bg: #fee2e2;
+  --color-error-border: #fca5a5;
+
+  --color-warning: #92400e;
+  --color-warning-bg: #fef3c7;
+  --color-warning-border: #fcd34d;
+
+  --color-info: #1e40af;
+  --color-info-bg: #dbeafe;
+  --color-info-border: #93c5fd;
+
+  /* TEXT COLORS */
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-tertiary: #94a3b8;
+  --color-text-muted: #cbd5e1;
+
+  /* BACKGROUND COLORS */
+  --color-bg-main: #f0f4f8;
+  --color-bg-card: #ffffff;
+  --color-bg-hover: #f8fafc;
+  --color-bg-overlay: rgba(0, 0, 0, 0.45);
+
+  /* BORDERS */
+  --color-border-light: #e2e8f0;
+  --color-border-medium: #cbd5e1;
+  --color-border-dark: #94a3b8;
+
+  /* FORM ELEMENTS */
+  --color-input-bg: #fafafa;
+  --color-input-border: #e2e8f0;
+  --color-input-border-hover: #cbd5e1;
+  --color-input-border-focus: #0b188f;
+  --color-input-placeholder: #94a3b8;
+
+  /* SIDEBAR */
+  --color-sidebar-bg: #0b188f;
+  --color-sidebar-hover: #08107a;
+  --color-sidebar-text: #ffffff;
+  --color-sidebar-accent: #4f46e5;
+
+  /* TABLE */
+  --color-table-header: #f8fafc;
+  --color-table-hover: #f1f5f9;
+  --color-table-border: #e2e8f0;
+
+  /* SHADOWS */
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 25px 70px rgba(0, 0, 2, 0.5);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+  /* BORDER RADIUS */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-full: 9999px;
+
+  /* SPACING */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 28px;
+}
+
+/* ============================================================================
+   BUTTON UTILITIES
+*/
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.87rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-primary:active:not(:disabled) {
+  background-color: #06126e;
+}
+
+.btn-primary:disabled {
+  background-color: var(--color-gray-300);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-secondary {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.87rem;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-gray-200);
+}
+
+.btn-secondary:disabled {
+  background-color: var(--color-gray-200);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-gray-600);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.87rem;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background-color: var(--color-gray-100);
+  border-color: var(--color-border-medium);
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.87rem;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #dc2626;
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-danger:disabled {
+  background-color: var(--color-gray-300);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================================================
+   FORM UTILITIES
+*/
+
+.input-field input,
+.input-field textarea,
+.input-field select {
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  background-color: var(--color-input-bg);
+  transition: border 0.15s ease;
+}
+
+.input-field input::placeholder,
+.input-field textarea::placeholder {
+  color: var(--color-input-placeholder);
+}
+
+.input-field input:hover,
+.input-field textarea:hover,
+.input-field select:hover {
+  border-color: var(--color-input-border-hover);
+}
+
+.input-field input:focus,
+.input-field textarea:focus,
+.input-field select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-lighter);
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-gray-600);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-error {
+  color: var(--color-error);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+/* ============================================================================
+   CARD & LAYOUT UTILITIES
+*/
+
+.card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.card-elevated {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+.table-wrapper {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background-color: var(--color-table-header);
+}
+
+table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-table-border);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.15s ease;
+}
+
+table tbody tr:hover {
+  background-color: var(--color-table-hover);
+}
+
+table tbody td {
+  padding: 12px 16px;
+  font-size: 0.87rem;
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+/* ============================================================================
+   ALERT & STATUS UTILITIES
+*/
+
+.alert {
+  border-radius: var(--radius-lg);
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  border-left: 4px solid;
+  margin-bottom: 12px;
+}
+
+.alert-success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border-left-color: var(--color-success-border);
+}
+
+.alert-error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  border-left-color: var(--color-error-border);
+}
+
+.alert-warning {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+  border-left-color: var(--color-warning-border);
+}
+
+.alert-info {
+  background-color: var(--color-info-bg);
+  color: var(--color-info);
+  border-left-color: var(--color-info-border);
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ============================================================================
+   ROLE BADGES
+*/
+
+.badge-doctor {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.badge-nurse {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.badge-admin {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.badge-pharmacist {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.badge-receptionist {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.badge-patient {
+  background-color: #e0f2f1;
+  color: #00796b;
+}
+
+/* ============================================================================
+   MODAL & OVERLAY
+*/
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-bg-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  font-size: 1.4rem;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--color-text-secondary);
+}

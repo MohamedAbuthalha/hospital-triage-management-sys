@@ -1,0 +1,938 @@
+@import '../theme/theme.css';
+
+/* ============================================================================
+   WARD MANAGEMENT DASHBOARD - CONSISTENT WITH ADMIN DASHBOARD
+   ============================================================================
+   This stylesheet ensures visual consistency across all admin interfaces
+*/
+
+/* ROOT CONTAINER */
+.warden-root {
+  min-height: 100vh;
+  background: var(--color-bg-main);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================================
+   NAVIGATION BAR
+   ============================================================================ */
+.warden-nav {
+  background: var(--color-bg-card);
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.warden-brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+}
+
+.warden-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.warden-role-tag {
+  background: #fef9c3;
+  color: #854d0e;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.warden-logout-btn {
+  background: var(--color-error);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+
+.warden-logout-btn:hover {
+  background: #7a1515;
+  opacity: 0.95;
+}
+
+/* ============================================================================
+   MAIN LAYOUT
+   ============================================================================ */
+.warden-layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 60px);
+}
+
+/* SIDEBAR */
+.warden-sidebar {
+  width: 240px;
+  background: var(--color-primary);
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.warden-side-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.warden-side-btn:hover {
+  background: var(--color-primary-dark);
+  color: white;
+}
+
+.warden-side-btn.active {
+  background: var(--color-primary-dark);
+  color: white;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* MAIN CONTENT */
+.warden-main {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============================================================================
+   MESSAGES & ALERTS
+   ============================================================================ */
+.warden-success {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  font-weight: 600;
+  border-left: 4px solid var(--color-success-border);
+  animation: slideIn 0.3s ease;
+}
+
+.warden-error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  font-weight: 600;
+  border-left: 4px solid var(--color-error-border);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
+.warden-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.warden-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin: 20px 0 12px;
+}
+
+/* ============================================================================
+   STAT CARDS
+   ============================================================================ */
+.warden-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.warden-stat-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  border-top: 4px solid;
+  transition: all 0.2s ease;
+}
+
+.warden-stat-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.warden-stat-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.warden-stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.warden-stat-label {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Status colors for stat cards */
+.warden-stat-card.available {
+  border-top-color: var(--color-success);
+}
+
+.warden-stat-card.available .warden-stat-value {
+  color: var(--color-success);
+}
+
+.warden-stat-card.occupied {
+  border-top-color: var(--color-error);
+}
+
+.warden-stat-card.occupied .warden-stat-value {
+  color: var(--color-error);
+}
+
+.warden-stat-card.pending {
+  border-top-color: var(--color-warning);
+}
+
+.warden-stat-card.pending .warden-stat-value {
+  color: var(--color-warning);
+}
+
+.warden-stat-card.maintenance {
+  border-top-color: var(--color-info);
+}
+
+.warden-stat-card.maintenance .warden-stat-value {
+  color: var(--color-info);
+}
+
+/* ============================================================================
+   ALERT BANNER
+   ============================================================================ */
+.warden-alert-banner {
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--color-warning);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   BED GRID
+   ============================================================================ */
+.warden-bed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.warden-bed-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  border-left: 5px solid;
+  transition: all 0.2s ease;
+}
+
+.warden-bed-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.warden-bed-card.available {
+  border-left-color: var(--color-success);
+}
+
+.warden-bed-card.occupied {
+  border-left-color: var(--color-error);
+}
+
+.warden-bed-card.maintenance {
+  border-left-color: var(--color-info);
+}
+
+.warden-bed-number {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.warden-bed-ward {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.warden-bed-patient {
+  font-size: 0.8rem;
+  color: var(--color-text-primary);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.warden-bed-admitted {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  margin-top: 4px;
+}
+
+/* ============================================================================
+   CARDS & CONTAINERS
+   ============================================================================ */
+.warden-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.warden-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+  .warden-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   FORMS
+   ============================================================================ */
+.warden-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.warden-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.warden-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.warden-input {
+  padding: 10px 12px;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-input-bg);
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.warden-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-lighter);
+  background-color: white;
+}
+
+.warden-input:hover:not(:focus) {
+  border-color: var(--color-input-border-hover);
+}
+
+.warden-input::placeholder {
+  color: var(--color-input-placeholder);
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+.warden-btn {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* PRIMARY BUTTON */
+.warden-btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.warden-btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-hover);
+}
+
+.warden-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* SECONDARY/OUTLINE BUTTON */
+.warden-btn-secondary {
+  background: var(--color-bg-hover);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-light);
+}
+
+.warden-btn-secondary:hover:not(:disabled) {
+  background: var(--color-border-light);
+  color: var(--color-text-primary);
+}
+
+/* DANGER BUTTON */
+.warden-btn-danger {
+  background: var(--color-error);
+  color: white;
+}
+
+.warden-btn-danger:hover:not(:disabled) {
+  background: #7a1515;
+  box-shadow: var(--shadow-hover);
+}
+
+/* SUCCESS BUTTON */
+.warden-btn-success {
+  background: var(--color-success);
+  color: white;
+}
+
+.warden-btn-success:hover:not(:disabled) {
+  background: #047857;
+  box-shadow: var(--shadow-hover);
+}
+
+/* DISABLED STATE */
+.warden-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--color-gray-300);
+  color: var(--color-text-muted);
+}
+
+.warden-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+/* ============================================================================
+   TABLES
+   ============================================================================ */
+.warden-table-wrap {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.warden-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.warden-table thead {
+  background: var(--color-table-header);
+}
+
+.warden-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-table-border);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.warden-table tbody tr {
+  border-bottom: 1px solid var(--color-table-border);
+  transition: background-color 0.15s ease;
+}
+
+.warden-table tbody tr:hover {
+  background: var(--color-table-hover);
+}
+
+.warden-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.warden-table td {
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+.warden-table-empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-tertiary);
+  font-size: 0.9rem;
+}
+
+/* ============================================================================
+   BADGES & STATUS INDICATORS
+   ============================================================================ */
+.warden-badge {
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.warden-badge-success {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.warden-badge-error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.warden-badge-warning {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.warden-badge-info {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+.warden-badge-primary {
+  background: var(--color-primary-lighter);
+  color: var(--color-primary);
+}
+
+/* ============================================================================
+   WEEKLY CHECKLIST / TASKS
+   ============================================================================ */
+.warden-week-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+  border: 1px solid var(--color-border-light);
+}
+
+.warden-week-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.warden-week-badge {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.warden-week-desc {
+  color: var(--color-text-secondary);
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+}
+
+.warden-pending-alert {
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--color-warning);
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.warden-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.warden-task-item {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid;
+  border: 1px solid var(--color-border-light);
+  transition: all 0.2s ease;
+}
+
+.warden-task-item:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.warden-task-item.completed {
+  background: #f0fdf4;
+  border-left-color: var(--color-success);
+}
+
+.warden-task-item.pending {
+  background: white;
+  border-left-color: var(--color-warning);
+}
+
+.warden-task-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.warden-task-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.warden-task-name {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.warden-task-date {
+  font-size: 0.76rem;
+  color: var(--color-text-tertiary);
+  margin-top: 4px;
+}
+
+.warden-done-tag {
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================================================
+   CLEANLINESS REPORT
+   ============================================================================ */
+.warden-dept-row {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  border: 1px solid var(--color-border-light);
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.warden-dept-row:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.warden-dept-name {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.warden-radio-group {
+  display: flex;
+  gap: 10px;
+}
+
+.warden-radio-label {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.warden-radio-label input {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.warden-radio-label:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Clean state */
+.warden-radio-label.clean {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border-color: var(--color-success-border);
+}
+
+/* Not clean state */
+.warden-radio-label.dirty {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border-color: var(--color-error-border);
+}
+
+/* Unselected state */
+.warden-radio-label.unselected {
+  background: var(--color-bg-hover);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-light);
+}
+
+.warden-notes-input {
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  outline: none;
+  background: var(--color-input-bg);
+  width: 100%;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  color: var(--color-text-primary);
+}
+
+.warden-notes-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-lighter);
+  background: white;
+}
+
+.warden-notes-input::placeholder {
+  color: var(--color-input-placeholder);
+}
+
+/* ============================================================================
+   ACTION BUTTONS IN TABLES
+   ============================================================================ */
+.warden-action-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.warden-action-btn:hover {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.warden-action-btn-danger {
+  background: var(--color-error);
+}
+
+.warden-action-btn-danger:hover {
+  background: #7a1515;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+@media (max-width: 1200px) {
+  .warden-main {
+    padding: 24px;
+  }
+
+  .warden-dept-row {
+    grid-template-columns: 150px 1fr;
+  }
+
+  .warden-dept-row .warden-radio-group {
+    grid-column: 2;
+  }
+
+  .warden-dept-row .warden-notes-input {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .warden-layout {
+    flex-direction: column;
+  }
+
+  .warden-sidebar {
+    width: 100%;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px;
+  }
+
+  .warden-main {
+    padding: 16px;
+  }
+
+  .warden-stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .warden-bed-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .warden-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .warden-week-header {
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+  }
+
+  .warden-table {
+    font-size: 0.8rem;
+  }
+
+  .warden-table th,
+  .warden-table td {
+    padding: 8px 12px;
+  }
+
+  .warden-dept-row {
+    grid-template-columns: 1fr;
+  }
+
+  .warden-dept-row .warden-radio-group {
+    grid-column: 1;
+  }
+
+  .warden-dept-row .warden-notes-input {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .warden-nav {
+    padding: 0 12px;
+  }
+
+  .warden-nav-right {
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .warden-title {
+    font-size: 1.4rem;
+  }
+
+  .warden-stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .warden-btn {
+    width: 100%;
+  }
+}
