@@ -46,7 +46,9 @@ const Login = () => {
             ease: 'power3.out',
           },
           '-=0.4'
-        );
+        )
+        // Ensure button remains visible and interactive
+        .set('.login-card button', { opacity: 1, y: 0, pointerEvents: 'auto', visibility: 'visible' }, '+=0');
     }, containerRef);
 
     return () => ctx.revert(); // IMPORTANT: cleanup GSAP context

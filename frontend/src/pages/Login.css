@@ -102,6 +102,12 @@
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10;
 }
 
 .login-card button:disabled {
