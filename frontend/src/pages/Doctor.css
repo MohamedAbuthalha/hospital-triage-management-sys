@@ -256,46 +256,6 @@
   opacity: 0.9;
   transform: translateY(-1px);
 }
-}
-
-/* VITALS */
-.vitals-section {
-  background: #f8f9ff;
-  padding: 14px;
-  border-radius: 12px;
-  margin-top: 10px;
-}
-
-.vitals-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.vitals-grid span {
-  padding: 6px 10px;
-  background: white;
-  border-radius: 8px;
-  font-size: 14px;
-  border: 1px solid #eee;
-}
-
-/* ACTION BUTTON */
-.complete-btn {
-  background: #0b188f;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s ease;
-}
-
-.complete-btn:hover {
-  opacity: 0.9;
-}
 
 /* MESSAGES */
 .error-message {
