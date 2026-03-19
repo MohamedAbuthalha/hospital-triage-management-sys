@@ -175,6 +175,8 @@
 @media (max-width: 380px) {
   .login-card { padding: 1.5rem 1.2rem !important; border-radius: 10px !important; }
   .login-card h3 { font-size: 1.3rem !important; }
+  .form-group:last-of-type { margin-bottom: 2rem !important; }
+  .login-card button { margin-top: 0.5rem !important; }
 }
 
 /* Medium — show text panel, smaller */

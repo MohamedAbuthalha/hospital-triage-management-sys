@@ -62,7 +62,9 @@ body {
     visibility: visible !important;
     display: block !important;
     pointer-events: auto !important;
+    margin-top: 1.5rem !important;
   }
+  .form-group { margin-bottom: 1.5rem !important; }
   .form-group input { padding: 13px 12px !important; font-size: 15px !important; }
 }
 
