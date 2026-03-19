@@ -37,8 +37,8 @@ const LabDashboard = () => {
   ];
 
   return (
-    <div style={s.root}>
-      <nav style={s.nav}>
+    <div style={s.root} className="page-root">
+      <nav style={s.nav} className="page-nav">
         <div style={{ ...s.brand, display: "flex", alignItems: "center", gap: 8 }}><Icon name="lab" size="md" color="#5b21b6" /> Lab Dashboard</div>
         <div style={s.navRight}>
           <span style={s.roleTag}>Lab Technician</span>
@@ -46,11 +46,11 @@ const LabDashboard = () => {
           <button onClick={logout} style={s.logoutBtn}>Logout</button>
         </div>
       </nav>
-      <div style={s.layout}>
-        <aside style={s.sidebar}>
+      <div style={s.layout} className="page-layout">
+        <aside style={s.sidebar} className="page-sidebar">
           {tabs.map(t => <button key={t.id} onClick={() => { setTab(t.id); setSelected(null); setMsg(''); setErr(''); }} style={{ ...s.sideBtn, ...(tab === t.id ? s.sideBtnActive : {}) }}>{t.label}</button>)}
         </aside>
-        <main style={s.main}>
+        <main style={s.main} className="page-main">
           {msg && <div style={s.success}>{msg}</div>}
           {err && <div style={s.error}>{err}</div>}
 

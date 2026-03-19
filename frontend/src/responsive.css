@@ -1,0 +1,1002 @@
+/* ============================================================================
+   HOSPITAL MANAGEMENT SYSTEM — GLOBAL RESPONSIVE LAYER
+   Mobile-first. No logic changed. Pure layout / spacing / usability fixes.
+   ============================================================================ */
+
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Prevent horizontal scroll globally */
+.admin-container,
+.doctor-container,
+.nurse-container,
+.warden-root,
+[style*="min-height: 100vh"] {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ── Scrollable table wrapper ─────────────────────────────────────────────── */
+.resp-table-wrap,
+.staff-list .resp-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
+
+/* ── LOGIN PAGE ───────────────────────────────────────────────────────────── */
+.login-content {
+  width: 92%;
+  max-width: 1200px;
+  padding: 16px 0;
+}
+
+.login-card {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .login-content {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+  .login-text { display: none !important; }
+  .login-card {
+    padding: 2rem 1.5rem !important;
+    border-radius: 12px !important;
+  }
+  .login-card h3 { font-size: 1.4rem !important; }
+  .login-card button { padding: 14px !important; font-size: 15px !important; }
+  .form-group input { padding: 13px 12px !important; font-size: 15px !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .login-content {
+    grid-template-columns: 1fr 380px !important;
+    gap: 2rem !important;
+  }
+  .login-text h1 { font-size: 2.8rem !important; }
+  .login-text h2 { font-size: 1.8rem !important; }
+}
+
+/* ── SHARED NAV (inline-style navs) ──────────────────────────────────────── */
+/* Applied via .resp-nav injected in JSX */
+.resp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: #fff;
+  height: auto !important;
+  min-height: 60px;
+  padding: 0 16px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resp-nav-brand {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.resp-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.resp-role-tag {
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.resp-logout-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .82rem;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.resp-logout-btn:hover { background: #dc2626; }
+
+@media (max-width: 479px) {
+  .resp-nav-right span[class*="role"] { display: none; }
+  .resp-nav-right strong { font-size: .8rem; }
+}
+
+/* ── SHARED SIDEBAR ───────────────────────────────────────────────────────── */
+.resp-layout {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.resp-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform .25s ease, width .25s ease;
+}
+
+/* Mobile: sidebar becomes a slide-in drawer */
+@media (max-width: 767px) {
+  .resp-layout { flex-direction: column; }
+
+  .resp-sidebar {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 8px !important;
+    gap: 4px !important;
+    /* scrollbar hidden on mobile */
+    scrollbar-width: none;
+  }
+  .resp-sidebar::-webkit-scrollbar { display: none; }
+
+  .resp-sidebar-btn {
+    white-space: nowrap !important;
+    padding: 8px 14px !important;
+    font-size: .8rem !important;
+    border-radius: 20px !important;
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .resp-sidebar { width: 180px !important; }
+  .resp-sidebar-btn { font-size: .83rem !important; padding: 9px 10px !important; }
+}
+
+.resp-main {
+  flex: 1;
+  padding: 24px 20px;
+  overflow-y: auto;
+  min-width: 0; /* prevents flex blowout */
+}
+
+@media (max-width: 767px) {
+  .resp-main { padding: 16px 14px !important; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .resp-main { padding: 20px 18px !important; }
+}
+
+/* ── ADMIN HEADER / TABS ─────────────────────────────────────────────────── */
+.admin-header {
+  padding: 20px 16px !important;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-header h1 { font-size: clamp(1.1rem, 4vw, 1.6rem) !important; }
+
+.header-actions {
+  flex-wrap: wrap;
+  gap: 10px !important;
+}
+
+.tabs {
+  flex-wrap: wrap !important;
+  gap: 4px 0 !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tabs button {
+  padding: 10px 16px !important;
+  font-size: .85rem !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: 6px 6px 0 0;
+}
+
+@media (max-width: 767px) {
+  .admin-header { padding: 14px 12px !important; }
+  .admin-header h1 { font-size: 1.15rem !important; }
+  .admin-content { padding: 0 12px !important; }
+  .tab-content { padding: 20px 14px !important; border-radius: 12px !important; }
+  .tabs button { padding: 8px 12px !important; font-size: .78rem !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .admin-header { padding: 20px 24px !important; }
+  .tab-content { padding: 28px 24px !important; }
+}
+
+/* ── FORMS ────────────────────────────────────────────────────────────────── */
+.form-row {
+  grid-template-columns: 1fr !important;
+}
+
+@media (min-width: 600px) {
+  .form-row { grid-template-columns: 1fr 1fr !important; }
+}
+
+.form-group input,
+.form-group select,
+input[style*="border: 1px solid"],
+select[style*="border: 1px solid"],
+textarea[style*="border: 1px solid"] {
+  width: 100%;
+  min-height: 44px; /* touch target */
+  font-size: .9rem;
+}
+
+.submit-btn,
+button[style*="background: #2563eb"],
+button[style*="background: #065f46"],
+button[style*="background: #7c3aed"],
+button[style*="background: #92400e"] {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+@media (max-width: 767px) {
+  .submit-btn {
+    width: 100% !important;
+    padding: 13px !important;
+    font-size: .9rem !important;
+    align-self: stretch !important;
+  }
+}
+
+/* ── TABLES ───────────────────────────────────────────────────────────────── */
+.staff-list,
+.staff-table,
+[style*="borderCollapse: collapse"],
+[style*="border-collapse: collapse"] {
+  min-width: 0;
+}
+
+/* Wrap all tables in scrollable container */
+.staff-list { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.staff-table {
+  min-width: 520px; /* forces scroll before collapse */
+}
+
+@media (max-width: 767px) {
+  .staff-table th,
+  .staff-table td {
+    padding: 10px 8px !important;
+    font-size: .78rem !important;
+    white-space: normal !important;
+  }
+}
+
+/* ── DOCTOR PAGE ──────────────────────────────────────────────────────────── */
+.doctor-header {
+  padding: 16px 16px !important;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.doctor-header h1 { font-size: clamp(1.1rem, 4vw, 1.5rem) !important; }
+
+.doctor-content { padding: 0 14px !important; }
+
+.dashboard-stats {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+  gap: 12px !important;
+  margin: 20px 0 !important;
+}
+
+.stat-card { padding: 18px !important; }
+.stat-value { font-size: clamp(1.8rem, 6vw, 2.4rem) !important; }
+
+.cases-section { padding: 20px 14px !important; }
+
+.case-card-top {
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+}
+
+.case-badges {
+  justify-content: flex-start !important;
+}
+
+.vitals-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+@media (min-width: 480px) {
+  .vitals-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; }
+}
+
+@media (max-width: 767px) {
+  .doctor-header { padding: 12px 14px !important; }
+  .doctor-content { padding: 0 12px !important; }
+  .dashboard-stats { grid-template-columns: repeat(2, 1fr) !important; margin: 14px 0 !important; }
+  .stat-card { padding: 14px !important; }
+  .stat-value { font-size: 1.8rem !important; }
+  .cases-section { padding: 16px 12px !important; border-radius: 12px !important; }
+  .case-card { padding: 16px !important; }
+  .complete-btn { width: 100% !important; padding: 12px !important; }
+  .case-actions { justify-content: stretch !important; }
+  .vitals-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
+}
+
+/* ── NURSE / LAB / RECEPTIONIST (inline-style pages) ────────────────────── */
+/* These pages use JS style objects — we target layout via class hooks */
+
+/* Stats row — always 2-col on mobile, auto on bigger screens */
+@media (max-width: 479px) {
+  /* Using attribute targeting since these are inline styles */
+  [style*="minmax(170px"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="minmax(180px"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="minmax(300px"] { grid-template-columns: 1fr !important; }
+  [style*="minmax(240px"] { grid-template-columns: 1fr !important; }
+  [style*="minmax(200px"] { grid-template-columns: 1fr !important; }
+}
+
+/* ── WARDEN CSS CLASSES ───────────────────────────────────────────────────── */
+.warden-nav { flex-wrap: wrap; gap: 8px; min-height: 60px; height: auto !important; }
+.warden-nav-right { flex-wrap: wrap; gap: 8px !important; }
+
+@media (max-width: 767px) {
+  .warden-nav { padding: 8px 12px !important; }
+  .warden-layout { flex-direction: column !important; }
+  .warden-sidebar {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding: 8px !important;
+    gap: 4px !important;
+    scrollbar-width: none;
+  }
+  .warden-sidebar::-webkit-scrollbar { display: none; }
+  .warden-btn, .warden-sidebar .warden-btn { white-space: nowrap !important; font-size: .78rem !important; padding: 8px 12px !important; }
+  .warden-main { padding: 14px 12px !important; }
+  .warden-title { font-size: 1.25rem !important; }
+  .warden-stats-row { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+  .warden-bed-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .warden-bed-card { padding: 12px !important; }
+  .warden-dept-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 12px !important;
+  }
+  .warden-radio-group { flex-wrap: wrap !important; gap: 8px !important; }
+  .warden-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .warden-week-header { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }
+  .warden-card { padding: 16px !important; }
+  .warden-form-grid { grid-template-columns: 1fr !important; }
+  .warden-notes-input { width: 100% !important; }
+  .warden-submit-btn { width: 100% !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .warden-sidebar { width: 180px !important; }
+  .warden-stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ── PHARMACIST (large inline-style page) ─────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Sidebar horizontal scroll  */
+  [style*="width: 220px"][style*="flexDirection: 'column'"],
+  [style*="width: 220"][style*="flex-direction"] {
+    width: 100% !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+  }
+}
+
+/* ── GLOBAL STAT CARDS ────────────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  .warden-stat-card { padding: 14px !important; }
+  .warden-stat-value { font-size: 1.6rem !important; }
+  .warden-stat-label { font-size: .75rem !important; }
+}
+
+/* ── ALERTS / MESSAGES ────────────────────────────────────────────────────── */
+.error-message,
+.success-message,
+.warden-error,
+.warden-success {
+  word-break: break-word;
+  border-radius: 8px !important;
+  font-size: .88rem !important;
+  line-height: 1.5;
+}
+
+/* ── PAGE TITLES ──────────────────────────────────────────────────────────── */
+.warden-title,
+h2[style*="fontWeight: 800"],
+h2[style*="font-weight: 800"] {
+  font-size: clamp(1.2rem, 4vw, 1.6rem) !important;
+}
+
+/* ── WEEK CLOSE BUTTON ────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .warden-close-week-btn { width: 100% !important; text-align: center !important; }
+}
+
+/* ── TASK LIST ────────────────────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  .warden-task-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  .warden-btn.warden-btn-success { width: 100% !important; }
+}
+
+/* ── BED ASSIGN FORM ──────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .warden-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .warden-beds-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── RECEPTIONIST / NURSE / LAB (inline style pages) ─────────────────────── */
+.rs-layout, .ns-layout, .ls-layout {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+/* Mobile overrides for pages using inline s.layout */
+@media (max-width: 767px) {
+  /* Make sidebar horizontal tab strip */
+  aside[style*="width: 220"],
+  aside[style*="width:220"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    height: auto !important;
+    padding: 8px !important;
+    gap: 4px !important;
+    scrollbar-width: none;
+  }
+  aside[style*="width: 220"]::-webkit-scrollbar,
+  aside[style*="width:220"]::-webkit-scrollbar { display: none; }
+
+  aside[style*="width: 220"] button,
+  aside[style*="width:220"] button {
+    white-space: nowrap !important;
+    padding: 7px 12px !important;
+    font-size: .78rem !important;
+    flex-shrink: 0;
+    border-radius: 20px !important;
+    text-align: center !important;
+  }
+
+  /* Layout becomes vertical column */
+  div[style*="display: flex"][style*="minHeight: calc(100vh - 60px)"],
+  div[style*="display:'flex'"][style*="minHeight"] {
+    flex-direction: column !important;
+  }
+
+  /* Main content padding */
+  main[style*="padding: 32"],
+  main[style*="padding:32"] {
+    padding: 14px 12px !important;
+  }
+
+  /* Stats row 2-col */
+  div[style*="minmax(170px,1fr)"],
+  div[style*="minmax(180px,1fr)"],
+  div[style*="minmax(170px, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Cards grid 1-col */
+  div[style*="minmax(300px,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Form grids 1-col */
+  div[style*="minmax(240px,1fr)"],
+  div[style*="minmax(200px,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Submit buttons full width */
+  button[style*="alignSelf: 'flex-start'"] {
+    align-self: stretch !important;
+    width: 100% !important;
+  }
+
+  /* Nav user info — hide role tag on tiny screens if too long */
+  nav[style*="height: 60"] {
+    height: auto !important;
+    min-height: 56px;
+    flex-wrap: wrap;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  aside[style*="width: 220"],
+  aside[style*="width:220"] {
+    width: 180px !important;
+  }
+  div[style*="minmax(300px,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  div[style*="minmax(170px,1fr)"],
+  div[style*="minmax(180px,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── TABLE SCROLL WRAPPERS ────────────────────────────────────────────────── */
+/* Targets inline tableWrap style objects */
+div[style*="overflow: hidden"][style*="borderRadius"],
+div[style*="overflow:'hidden'"][style*="borderRadius"] {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Tables with inline styles */
+table[style*="borderCollapse"],
+table[style*="border-collapse"] {
+  min-width: 500px;
+}
+
+@media (max-width: 767px) {
+  table[style*="borderCollapse"] th,
+  table[style*="border-collapse"] th,
+  table[style*="borderCollapse"] td,
+  table[style*="border-collapse"] td {
+    padding: 10px 10px !important;
+    font-size: .78rem !important;
+  }
+}
+
+/* ── PHARMACIST PAGE SPECIFIC ─────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Two-column billing layout → single column */
+  div[style*="gridTemplateColumns: '1fr 320px'"],
+  div[style*="grid-template-columns: 1fr 320px"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Medicine search + filter row */
+  div[style*="gridTemplateColumns: '1fr auto auto'"] {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* ── CLEANLINESS MONITOR (admin component) ───────────────────────────────── */
+@media (max-width: 767px) {
+  div[style*="gridTemplateColumns: '160px 130px 1fr'"] {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+  div[style*="gridTemplateColumns: 'repeat(auto-fill,minmax(170px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── PATIENT INTAKE PAGE ─────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .intake-form-grid { grid-template-columns: 1fr !important; }
+  .intake-section { padding: 16px 14px !important; }
+  .intake-header { padding: 12px 14px !important; flex-direction: column !important; gap: 8px !important; }
+}
+
+/* ── PATIENT INTAKE CSS PAGE ─────────────────────────────────────────────── */
+.patient-intake-container {
+  overflow-x: hidden !important;
+}
+
+/* ── UNAUTHORIZED PAGE ────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .unauthorized-container { padding: 20px 16px !important; }
+}
+
+/* ── TOUCH TARGETS (all interactive elements) ────────────────────────────── */
+button, input, select, textarea, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  touch-action: manipulation;
+  min-height: 38px;
+  cursor: pointer;
+}
+
+/* ── ADMIN RESPONSIVE ─────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .admin-container { padding-bottom: 40px !important; }
+  .form { gap: 12px !important; }
+  .form-group { margin-bottom: 0 !important; }
+  .form-group label { font-size: .82rem !important; }
+  .form-group input,
+  .form-group select { padding: 11px !important; }
+  .form h2 { font-size: 1.2rem !important; margin-bottom: 16px !important; }
+}
+
+/* ── HOVER STATES (desktop only) ─────────────────────────────────────────── */
+@media (hover: hover) {
+  .warden-btn:hover,
+  .submit-btn:hover:not(:disabled),
+  .complete-btn:hover,
+  button.active:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    transition: all .15s;
+  }
+}
+
+/* ── LOADING SKELETON PULSE ───────────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── SCROLLBAR STYLING (desktop) ─────────────────────────────────────────── */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+}
+
+/* ============================================================================
+   PAGE-LEVEL CLASS HOOKS (added to NurseDashboard, Lab, Receptionist)
+   ============================================================================ */
+
+.page-root { overflow-x: hidden; max-width: 100vw; }
+
+.page-layout {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.page-sidebar {
+  flex-shrink: 0;
+  transition: all .2s ease;
+}
+
+.page-main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+/* ── Mobile: sidebar → horizontal scrollable tab strip ─────────────────── */
+@media (max-width: 767px) {
+  .page-layout {
+    flex-direction: column !important;
+  }
+
+  .page-sidebar {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px !important;
+    gap: 4px !important;
+    scrollbar-width: none;
+    /* Keep original background color from inline style */
+  }
+  .page-sidebar::-webkit-scrollbar { display: none; }
+
+  .page-sidebar button {
+    white-space: nowrap !important;
+    padding: 8px 14px !important;
+    font-size: .78rem !important;
+    border-radius: 20px !important;
+    flex-shrink: 0;
+    min-height: 38px;
+    /* Preserve original text-align from inline */
+    text-align: center !important;
+  }
+  .page-sidebar-btn {
+    white-space: nowrap !important;
+    padding: 8px 14px !important;
+    font-size: .78rem !important;
+    border-radius: 20px !important;
+    flex-shrink: 0;
+  }
+
+  .page-main {
+    padding: 14px 12px !important;
+  }
+
+  /* Stats rows — 2 col on mobile */
+  .page-main > div > div[style*="auto-fill"],
+  .page-main div[style*="minmax(170px"],
+  .page-main div[style*="minmax(180px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Patient/item card grid → single col */
+  .page-main div[style*="minmax(300px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Form grids → single col */
+  .page-main div[style*="minmax(240px"],
+  .page-main div[style*="minmax(200px"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Submit buttons → full width */
+  .page-main button[style*="alignSelf"] {
+    align-self: stretch !important;
+    width: 100% !important;
+    padding: 12px !important;
+  }
+
+  /* Title sizing */
+  .page-main h2[style*="fontWeight"] {
+    font-size: 1.2rem !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Nav wrapping */
+  nav.page-nav,
+  .page-root > nav {
+    height: auto !important;
+    min-height: 56px;
+    padding: 8px 14px !important;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* Table wrappers — scrollable */
+  .page-main div[style*="overflow: hidden"][style*="borderRadius"],
+  .page-main div[style*="overflow:'hidden'"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .page-main table {
+    min-width: 480px;
+  }
+  .page-main th,
+  .page-main td {
+    padding: 9px 10px !important;
+    font-size: .78rem !important;
+    white-space: nowrap;
+  }
+
+  /* Select lists (patient picker) full width */
+  div[style*="maxWidth: 500"],
+  div[style*="maxWidth: 600"] {
+    max-width: 100% !important;
+  }
+
+  /* Cards with maxWidth constraint */
+  div[style*="maxWidth: 600"],
+  div[style*="maxWidth:600"] {
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-sidebar {
+    width: 180px !important;
+  }
+  .page-sidebar button {
+    font-size: .83rem !important;
+    padding: 9px 10px !important;
+  }
+  .page-main {
+    padding: 20px 18px !important;
+  }
+  .page-main div[style*="minmax(300px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .page-main div[style*="minmax(170px"],
+  .page-main div[style*="minmax(180px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  div[style*="maxWidth: 600"],
+  div[style*="maxWidth: 500"] {
+    max-width: 100% !important;
+  }
+}
+
+
+/* ============================================================================
+   PHARMACIST SPECIFIC RESPONSIVE RULES
+   ============================================================================ */
+
+/* Billing two-column grid → single column on mobile */
+@media (max-width: 900px) {
+  .page-main > div > div[style*="gridTemplateColumns: \"1fr 360px\""],
+  .page-main div[style*="1fr 360px"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Medicine search bar → stack on mobile */
+@media (max-width: 600px) {
+  .page-main div[style*="gridTemplateColumns: \"1fr auto auto\""],
+  .page-main div[style*="1fr auto auto"] {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* Pharmacist nav on mobile */
+@media (max-width: 767px) {
+  nav[style*="height: 62"],
+  nav[style*="height:62"] {
+    height: auto !important;
+    min-height: 56px !important;
+    padding: 8px 14px !important;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+/* ============================================================================
+   ADMIN EXTENSIONS (Doctor Overview Panel, Send Message Panel)
+   ============================================================================ */
+@media (max-width: 767px) {
+  /* AdminExtensions panels */
+  .page-root .tab-content > div > div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================================
+   MESSAGES PANEL (used across many pages)
+   ============================================================================ */
+@media (max-width: 767px) {
+  /* MessagesPanel container */
+  div[style*="maxWidth: 700"],
+  div[style*="maxWidth:700"],
+  div[style*="max-width: 700"] {
+    max-width: 100% !important;
+  }
+}
+
+/* ============================================================================
+   CLEANLINESS MONITOR — DEPARTMENT ROW
+   ============================================================================ */
+@media (max-width: 767px) {
+  /* DeptRow grid → single column */
+  div[style*="gridTemplateColumns: '160px 130px 1fr'"],
+  div[style*="160px 130px 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 12px !important;
+  }
+
+  /* Summary cards 2-col */
+  div[style*="minmax(170px,1fr)"],
+  div[style*="repeat(auto-fill,minmax(170px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ============================================================================
+   GLOBAL — PREVENT INLINE STYLE OVERFLOW
+   ============================================================================ */
+@media (max-width: 767px) {
+  /* Any element with fixed large padding gets reduced */
+  [style*="padding: 32"] { padding: 14px !important; }
+  [style*="padding: 40"] { padding: 16px !important; }
+  [style*="padding: 30"] { padding: 14px !important; }
+
+  /* Fixed width sidebar always gets overridden at mobile */
+  [style*="width: 220px"],
+  [style*="width: 220"] {
+    width: 100% !important;
+  }
+
+  /* Flex row layouts (sidebar + main) → column */
+  div[style*="display: flex"][style*="minHeight: calc(100vh"] {
+    flex-direction: column !important;
+  }
+}
+
+
+/* ============================================================================
+   PAGE-NAV CLASS — Applied to all role dashboards
+   ============================================================================ */
+.page-nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 200 !important;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 767px) {
+  .page-nav {
+    height: auto !important;
+    min-height: 56px;
+    padding: 8px 14px !important;
+  }
+  /* Hide role tag text on very small screens to save space */
+  .page-nav span[style*="borderRadius: 99"],
+  .page-nav span[style*="border-radius: 99"] {
+    display: none !important;
+  }
+  /* Shrink name text */
+  .page-nav strong { font-size: .82rem !important; }
+  /* Compact logout */
+  .page-nav button[style*="background: #ef4444"] {
+    padding: 6px 10px !important;
+    font-size: .78rem !important;
+  }
+}
+
+/* ============================================================================
+   FINAL SAFETY NET — Eliminate ALL horizontal overflow
+   ============================================================================ */
+.page-root,
+.admin-container,
+.doctor-container,
+.nurse-container,
+.warden-root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Tables always inside scroll wrapper */
+.page-main table,
+.staff-list table,
+.tab-content table {
+  min-width: 500px;
+}
+
+div:has(> table) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================================================
+   PRINT STYLES (bonus — clean printing for hospital records)
+   ============================================================================ */
+@media print {
+  .page-nav, .page-sidebar, .warden-nav, .warden-sidebar,
+  .admin-header .header-actions, .logout-btn { display: none !important; }
+  .page-main, .tab-content, .page-root { padding: 0 !important; }
+  body { font-size: 11pt; color: #000; background: #fff; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #ccc; padding: 6pt 8pt; }
+}

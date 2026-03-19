@@ -936,3 +936,159 @@
     width: 100%;
   }
 }
+
+/* ============================================================================
+   WARDEN — RESPONSIVE ADDITIONS
+   ============================================================================ */
+
+.warden-root { overflow-x: hidden; }
+
+/* Layout: sidebar + main */
+.warden-layout {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+@media (max-width: 767px) {
+  /* Nav wraps on small screens */
+  .warden-nav {
+    height: auto !important;
+    min-height: 56px;
+    padding: 8px 12px !important;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .warden-brand { font-size: 1rem !important; }
+  .warden-nav-right { gap: 8px !important; flex-wrap: wrap; }
+  .warden-role-tag { font-size: .7rem !important; }
+
+  /* Sidebar becomes horizontal tab strip */
+  .warden-layout { flex-direction: column !important; }
+  .warden-sidebar {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 8px !important;
+    gap: 4px !important;
+    scrollbar-width: none;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  .warden-sidebar::-webkit-scrollbar { display: none; }
+
+  .warden-sidebar-btn {
+    white-space: nowrap !important;
+    padding: 7px 14px !important;
+    font-size: .78rem !important;
+    border-radius: 20px !important;
+    flex-shrink: 0;
+    text-align: center !important;
+    min-height: 38px;
+  }
+
+  /* Main content */
+  .warden-main { padding: 14px 12px !important; }
+
+  /* Page titles */
+  .warden-title { font-size: 1.2rem !important; margin-bottom: 14px !important; }
+  .warden-section-title { font-size: .95rem !important; }
+
+  /* Stats */
+  .warden-stats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+  }
+  .warden-stat-card { padding: 14px 12px !important; }
+  .warden-stat-value { font-size: 1.6rem !important; }
+
+  /* Bed grid */
+  .warden-bed-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .warden-bed-card { padding: 12px !important; }
+  .warden-bed-num { font-size: 1rem !important; }
+
+  /* Dept row for cleanliness form */
+  .warden-dept-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 12px !important;
+  }
+  .warden-radio-group { gap: 8px !important; flex-wrap: wrap !important; }
+  .warden-notes-input { width: 100% !important; }
+
+  /* Forms */
+  .warden-form-grid { grid-template-columns: 1fr !important; }
+  .warden-field { margin-bottom: 0 !important; }
+  .warden-input,
+  .warden-notes-input {
+    min-height: 44px !important;
+    font-size: .9rem !important;
+  }
+  .warden-btn-primary,
+  .warden-btn.warden-btn-primary {
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: .88rem !important;
+  }
+
+  /* Table */
+  .warden-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+
+  /* Week header */
+  .warden-week-header {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+  .warden-close-week-btn { width: 100% !important; text-align: center !important; }
+
+  /* Task items */
+  .warden-task-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    padding: 14px 12px !important;
+  }
+  .warden-btn.warden-btn-success { width: 100% !important; }
+
+  /* Card form layout */
+  .warden-card { padding: 16px !important; }
+  
+  /* Two-column bed form layout → single */
+  .warden-beds-two-col { grid-template-columns: 1fr !important; }
+
+  /* Alert banner */
+  .warden-alert-banner { padding: 10px 12px !important; font-size: .84rem !important; }
+  .warden-pending-alert { padding: 10px 12px !important; font-size: .84rem !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .warden-sidebar { width: 180px !important; }
+  .warden-stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+  .warden-bed-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .warden-main { padding: 20px 18px !important; }
+}
+
+@media (min-width: 1024px) {
+  .warden-bed-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important; }
+}
+
+/* ── Sidebar button mobile specifics ─────────────────────────────────────── */
+@media (max-width: 767px) {
+  .warden-side-btn {
+    flex-shrink: 0 !important;
+    padding: 7px 14px !important;
+    font-size: .78rem !important;
+    border-radius: 20px !important;
+    white-space: nowrap !important;
+    min-height: 36px;
+  }
+  .warden-side-btn.active {
+    box-shadow: none !important;
+  }
+}

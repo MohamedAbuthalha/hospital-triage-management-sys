@@ -145,3 +145,39 @@
 .login-card h3 {
   text-align: center;
 }
+/* ============================================================================
+   LOGIN — RESPONSIVE ADDITIONS
+   ============================================================================ */
+
+/* Base improvements */
+.login-hero { overflow-x: hidden; }
+.login-content { padding: 20px 0; }
+
+.form-group input {
+  min-height: 46px;
+  font-size: 16px; /* prevents iOS zoom */
+}
+
+.login-card button {
+  min-height: 48px;
+  font-size: 16px;
+  transition: opacity .15s;
+}
+.login-card button:hover:not(:disabled) { opacity: .88; }
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .login-card { padding: 1.5rem 1.2rem !important; border-radius: 10px !important; }
+  .login-card h3 { font-size: 1.3rem !important; }
+}
+
+/* Medium — show text panel, smaller */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .login-content {
+    grid-template-columns: 1fr 360px !important;
+    gap: 2.5rem !important;
+  }
+  .login-text h1 { font-size: 2.6rem !important; }
+  .login-text h2 { font-size: 1.7rem !important; }
+  .login-text { display: block !important; }
+}

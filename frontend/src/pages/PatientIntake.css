@@ -153,3 +153,23 @@
     padding: 30px;
   }
 }
+/* ============================================================================
+   PATIENT INTAKE — RESPONSIVE ADDITIONS
+   ============================================================================ */
+
+.patient-intake-container { overflow-x: hidden; }
+
+@media (max-width: 767px) {
+  .patient-intake-container { padding: 12px !important; align-items: flex-start !important; padding-top: 24px !important; }
+  .patient-intake-card {
+    padding: 24px 16px !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+  }
+  .patient-intake-card h1 { font-size: 1.4rem !important; }
+  .subtitle { font-size: .88rem !important; margin-bottom: 20px !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .patient-intake-card { padding: 36px !important; }
+}

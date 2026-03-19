@@ -243,3 +243,76 @@
   color: var(--color-error);
   font-weight: 600;
 }
+/* ============================================================================
+   ADMIN — RESPONSIVE ADDITIONS (appended, no existing rules changed)
+   ============================================================================ */
+
+/* Ensure content doesn't overflow */
+.admin-container { overflow-x: hidden; }
+.admin-content { overflow-x: hidden; }
+.tab-content { overflow-x: hidden; }
+
+/* Tabs horizontal scroll on small screens */
+.tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 2px;
+  padding-bottom: 2px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+/* Staff table scroll wrapper */
+.staff-list {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px) {
+  .admin-header {
+    padding: 14px 12px !important;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .admin-header h1 { font-size: 1.15rem; }
+  .admin-content { padding: 0 10px; }
+  .tab-content { padding: 18px 12px; border-radius: 10px; }
+  .tabs button {
+    padding: 9px 12px;
+    font-size: .76rem;
+    min-height: 40px;
+  }
+  .form-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .form-group input,
+  .form-group select {
+    padding: 12px;
+    min-height: 46px;
+    font-size: .9rem;
+  }
+  .form h2 { font-size: 1.1rem; margin-bottom: 14px; }
+  .submit-btn {
+    width: 100%;
+    padding: 13px;
+    font-size: .9rem;
+    margin-top: 4px;
+  }
+  .staff-table th,
+  .staff-table td {
+    padding: 9px 8px;
+    font-size: .76rem;
+  }
+  .logout-btn {
+    padding: 7px 12px;
+    font-size: .82rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .admin-header { padding: 20px 24px; }
+  .admin-content { padding: 0 16px; }
+  .tab-content { padding: 28px 24px; }
+  .tabs button { padding: 10px 18px; font-size: .88rem; }
+  .form-row { grid-template-columns: 1fr 1fr !important; gap: 16px; }
+}

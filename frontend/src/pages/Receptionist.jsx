@@ -53,8 +53,8 @@ const Receptionist = () => {
   ];
 
   return (
-    <div style={s.root}>
-      <nav style={s.nav}>
+    <div style={s.root} className="page-root">
+      <nav style={s.nav} className="page-nav">
         <div style={{ ...s.navBrand, display: "flex", alignItems: "center", gap: 8 }}><Icon name="hospital" size="md" color="#1d4ed8" /> Reception</div>
         <div style={s.navUser}>
           <span style={s.roleTag}>Receptionist</span>
@@ -62,13 +62,13 @@ const Receptionist = () => {
           <button onClick={logout} style={s.logoutBtn}>Logout</button>
         </div>
       </nav>
-      <div style={s.layout}>
-        <aside style={s.sidebar}>
+      <div style={s.layout} className="page-layout">
+        <aside style={s.sidebar} className="page-sidebar">
           {tabs.map(t => (
             <button key={t.id} onClick={() => setTab(t.id)} style={{ ...s.sideBtn, ...(tab === t.id ? s.sideBtnActive : {}), display: 'flex', alignItems: 'center', gap: 8 }}><Icon name={t.iconName} size="sm" color={tab === t.id ? '#fff' : '#94a3b8'} /> {t.label}</button>
           ))}
         </aside>
-        <main style={s.main}>
+        <main style={s.main} className="page-main">
           {msg && <div style={s.success}>{msg}</div>}
           {err && <div style={s.error}>{err}</div>}
 

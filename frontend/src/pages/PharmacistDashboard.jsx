@@ -646,9 +646,9 @@ export default function PharmacistDashboard() {
   ];
 
   return (
-    <div style={s.root}>
+    <div style={s.root} className="page-root">
       {toast && <Toast key={toast.id} msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
-      <nav style={s.nav}>
+      <nav style={s.nav} className="page-nav">
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={s.navIcon}><Icon name="pharmacy" size="md" color="white" /></div>
           <span style={s.brand}>Hospital Pharmacy</span>
@@ -661,15 +661,15 @@ export default function PharmacistDashboard() {
           <button onClick={logout} style={s.logoutBtn}>Logout</button>
         </div>
       </nav>
-      <div style={s.layout}>
-        <aside style={s.sidebar}>
+      <div style={s.layout} className="page-layout">
+        <aside style={s.sidebar} className="page-sidebar">
           {tabs.map((t) => (
             <button key={t.id} onClick={() => setTab(t.id)} style={{ ...s.sideBtn, ...(tab === t.id ? s.sideBtnActive : {}) }}>
               <Icon name={t.iconName} size="sm" color={tab === t.id ? "white" : "#a5b4fc"} /> {t.label}
             </button>
           ))}
         </aside>
-        <main style={s.main}>
+        <main style={s.main} className="page-main">
           {tab === "overview" && (
             <div>
               <h2 style={s.pageTitle}>Welcome back, {user?.name?.split(" ")[0]}!</h2>
